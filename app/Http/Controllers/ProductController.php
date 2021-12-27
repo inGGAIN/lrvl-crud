@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::latest()->paginate(5);
+
+        return view('products.index', compact('products'))->with(request()->input('page'));
     }
 
     /**
@@ -35,7 +38,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate input
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+        ]);
+        //create new product
+        Product::create($request->all());
+
+        //redirect user and send friendly msg
+        return redirect()->route('products.index')->with('success','Product created successfully');
     }
 
     /**
@@ -46,7 +58,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**
