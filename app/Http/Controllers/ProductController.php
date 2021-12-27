@@ -47,7 +47,7 @@ class ProductController extends Controller
         Product::create($request->all());
 
         //redirect user and send friendly msg
-        return redirect()->route('products.index')->with('success','Product created successfully');
+        return redirect()->route('products.index')->with('success', 'Product created successfully');
     }
 
     /**
@@ -69,7 +69,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -81,7 +81,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        //validate input
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+        ]);
+        //create new product
+        $product->update($request->all());
+
+        //redirect user and send friendly msg
+        return redirect()->route('products.index')->with('success', 'Product created successfully');
     }
 
     /**
