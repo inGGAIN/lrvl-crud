@@ -35,6 +35,15 @@
                     <input type="text" class="form-control" name="name" value="{{ $product->name }}" placeholder="Name">
                 </div>
             </div>
+
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <strong>Detail : </strong>
+                    <textarea style="150px;" type="text" placeholder="Detail" name="detail"
+                        class="form-control"></textarea>
+                </div>
+            </div>
+            
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Detail :</strong>

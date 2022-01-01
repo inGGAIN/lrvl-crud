@@ -8,6 +8,25 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+     // HOMEPAGE
+     function Home()
+     {
+         $data['title']  =   'Home';
+        //  $data['posts']  =   Post::latest()->limit(3)->get();  
+         return view     ('home', $data);
+     }
+      // CONTACT
+    function Contact()
+    {
+        $data['title']  ='Contact';
+        return view     ('page.contact', $data);
+    }
+     // ABOUT US
+     function AboutUs()
+     {
+         $data['title']  ='About Us';
+         return view     ('page.about', $data);
+     }
     /**
      * Display a listing of the resource.
      *

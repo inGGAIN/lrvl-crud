@@ -35,6 +35,14 @@
             </div>
             <div class="col-xs-12 col-md-12">
                 <div class="form-group">
+                    <strong>Alamat : </strong>
+                    <textarea style="100px;" type="text" placeholder="Alamat" name="alamat"
+                        class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
                     <strong>Detail : </strong>
                     <textarea style="150px;" type="text" placeholder="Detail" name="detail"
                         class="form-control"></textarea>
