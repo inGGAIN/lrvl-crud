@@ -5,23 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel CRUD</title>
+    <title>@yield('title', $title) | {{ config('app.name') }}</title>
+    {{-- LOCAL CSS --}}
+    <link rel="stylesheet" type="text/css" href="{!! asset('assets/style.css') !!}">
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
 
-    <!-- BOOTSTRAP 5.0.2 -->
-    <!-- OFFLINE BOOTSTRAP  -->
-    <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
-    <!-- STARTBOOTSTRAP -->
-    <link rel="stylesheet" href="startbootstrap/style.css">
-    <!-- ONLINE BOOTSTRAP  -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        <!-- BOOTSTRAP 5.0.2 -->
+        <!-- JavaScript Bundle with Popper -->
+        <!-- CSS only -->
+        <!-- ONLINE BOOTSTRAP  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
     </script>
-
     <!-- FONTAWESOME -->
     <script src="https://kit.fontawesome.com/7742704fc2.js" crossorigin="anonymous"></script>
     <!-- Google Icon  -->
@@ -35,12 +34,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
+    <script>
+        $(document).ready(function() {
+            $('li.active').removeClass('active');
+            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+        });
+    </script>
 </head>
 
 <body>
     <!-- SIDEBAR  -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
             <div class="nav navbar-expand-sm">
                 <h1 href="#" class="navbar-brand">{{ config('app.name') }}</h1>
                 @auth
@@ -58,7 +63,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 btn-group text-nowrap bd-highlight" role="button">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" role="button">
                     <li class="nav-item active">
                         <a href="{{ route('home') }}" class="btn btn-primary border-start" aria-current="page"><span
                                 class="fa fa-list-ul"></span> Home</a>
@@ -87,31 +92,35 @@
                         </li>
                     @endauth
                     <li class="nav-item active">
-                        <a href="{{ route('home') }}" class=" btn btn-primary"><i class="far fa-id-card"></i>
+                        <a href="{{ route('contact') }}" class=" btn btn-primary"><i class="far fa-id-card"></i>
                             Contact</a>
                     </li>
                     <li class="nav-item active ">
-                        <a href="{{ route('about') }}" class=" btn btn-primary"><i class="far fa-question-circle"></i>
+                        <a href="{{ route('about') }}" class=" btn btn-primary"><i
+                                class="far fa-question-circle"></i>
                             About Us</a>
                     </li>
-                </ul>
-                <!-- SEARCH BAR  -->
-                <div class="container">
-                    <form action="#" class="form-inline my-2 my-lg-0">
-                        <input type="search" class="form-control mr-sm-2 rounded-pill" placeholder="Search"
-                            aria-label="Search"></input>
-                    </form>
-                </div>
-                @guest
-                    <!-- LOGIN FORM  -->
-                    <div class="collapse navbar-collapse rounded-pill" id="navbarSupportedContent">
-                        <button class="btn text-nowrap bd-highlight" role="button">
-                            <a href="{{ route('login') }}" class="btn btn-primary"><i class="fa fa-user-circle"></i> Log
-                                In</a>
-                        </button>
-
+                    <!-- SEARCH BAR  -->
+                    <div class="container">
+                        <form action="#" class="d-flex">
+                            <input type="search" class="form-control mr-sm-2 rounded-pill" placeholder="Search"
+                                aria-label="Search"></input>
+                        </form>
                     </div>
-                @endguest
+                    <div class="container">
+                        <form action="#" class="form-inline my-2 my-lg-0">
+                            <button class="btn text-nowrap bd-highlight" role="button">
+                                <a href="{{ route('login') }}" class="btn btn-primary"><i
+                                        class="fa fa-user-circle"></i>
+                                    Log In</a>
+                            </button>
+                    </div>
+                </ul>
+
+                {{-- @guest
+
+
+                @endguest --}}
                 @auth
                     <div class="dropdown">
                         <button class="btn btn-primary rounded-pill" type="button" id="dropdownMenuButton1"

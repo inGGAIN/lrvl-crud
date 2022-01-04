@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,7 @@ Route::get      ('/login',      [UserController::class, 'loginForm'])->     name
 Route::post     ('/login',      [UserController::class, 'loginAction'])->   name('login.action');
 Route::get      ('/logout',     [UserController::class, 'logOut'])->        name('logout');
 Route::delete   ('/user/{id}',  [UserController::class, 'destroy'])->       name('user.destroy');
-Route::resource ('user',         UserController::class);
+Route::resource ('user',         UserController::class,);
 
 Route::get      ('/password',   [UserController::class, 'sandForm'])->      name('password');
 Route::post     ('/password',   [UserController::class, 'sandAction'])->    name('password.action');
